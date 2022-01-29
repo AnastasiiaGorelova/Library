@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter the user id</title>
+</head>
+<body>
+<form action="#" th:action="@{/book-givetouser}" th:object="${user}" method="post">
+    <label for="id">Enter the user id</label>
+    <input type="number" th:field="*{id}" id="id" placeholder="Id">
+    <input type="submit" value="Ok">
+</form>
+<p><a href="/book-list">Return</a></p>
+</body>
+</html>

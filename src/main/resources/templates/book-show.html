@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Your book</title>
+</head>
+<body>
+<h2>Your book</h2>
+<h4>Book name: </h4>
+<div th:text="${book.isEmpty()} ? 'Not found' : ${book.get().name}"></div>
+<h4>The author: </h4>
+<div th:text="${book.isEmpty()} ? 'Not found' : ${book.get().author}"></div>
+<p><a href="/book-list">Back to book list</a></p>
+</div>
+</body>
+</html>

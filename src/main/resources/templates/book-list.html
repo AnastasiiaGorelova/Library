@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<style>
+    table {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    table {
+        border-spacing: 15px;
+    }
+</style>
+<body>
+<div th:switch="${books}">
+    <h2 th:case="null">No books found!</h2>
+    <div th:case="*">
+        <h2>Books</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Code number</th>
+                <th>Book name</th>
+                <th>Author</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.codeNumber}"></td>
+                <td th:text="${book.name}"></td>
+                <td th:text="${book.author}"></td>
+                <td><a th:href="@{book-delete/{code_number}(code_number=${book.codeNumber})}">Delete</a></td>
+                <td><a th:href="@{book-update/{code_number}(code_number=${book.codeNumber})}">Update code number</a>
+                <td><a th:href="@{book-givetouser/{code_number}(code_number=${book.codeNumber})}">Give to user</a>
+                <td><a th:href="@{book-returntolibrary/{code_number}(code_number=${book.codeNumber})}">Return to
+                    library</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/book-find">Find book by code number</a></p>
+    <p><a href="/book-create">Add book</a></p>
+    <p><a href="/users">List of users</a></p>
+</div>
+</body>
+</html>

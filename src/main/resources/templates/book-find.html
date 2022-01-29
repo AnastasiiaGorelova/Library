@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter the code number</title>
+</head>
+<body>
+<form action="#" th:action="@{/book-find}" th:object="${book}" method="post">
+    <label for="codeNumber">Enter the code number</label>
+    <input type="number" th:field="*{codeNumber}" id="codeNumber" placeholder="Code Number">
+    <input type="submit" value="Ok">
+</form>
+<p><a href="/book-show">Show this book</a></p>
+</body>
+</html>

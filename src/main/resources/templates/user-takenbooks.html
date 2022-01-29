@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Taken books</title>
+</head>
+<style>
+    table {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    table {
+        border-spacing: 15px;
+    }
+</style>
+<body>
+<div th:switch="${books}">
+    <h2 th:case="null">No books found!</h2>
+    <div th:case="*">
+        <h2>Taken books</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Code number</th>
+                <th>Book name</th>
+                <th>Author</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.codeNumber}"></td>
+                <td th:text="${book.name}"></td>
+                <td th:text="${book.author}"></td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/users">List of users</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+<title>Update code number</title>
+</head>
+<body>
+<form action="#" th:action="@{/book-update}" th:object="${book}" method="post">
+    <label for="codeNumber">Code number</label>
+    <input type="number" th:field="*{codeNumber}" id="codeNumber" placeholder="Code Number">
+    <br/>
+    <label for="name">Book name</label>
+    <input readonly type="text" th:field="*{name}" id="name" placeholder="Book Name">
+    <br/>
+    <label for="author">Author</label>
+    <input readonly type="text" th:field="*{author}" id="author" placeholder="Author">
+    <br/>
+    <label for="userId">User Id</label>
+    <input readonly type="number" th:field="*{userId}" id="userId" placeholder="User Id">
+    <br/>
+    <input type="submit" value="Update code number">
+</form>
+</body>
+</html>
