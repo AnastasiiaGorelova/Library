@@ -18,6 +18,7 @@
 * изменение шифра книги  
 
 ### Запуск приложения. ###
+В файл src/main/resources/application.properties необходимо дописать свои настройки для БД.
 ```bash
 ./mvnw spring-boot:run
 ```
