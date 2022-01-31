@@ -19,30 +19,30 @@ public class BookController {
     private final BookService bookService;
 
     @Autowired
-    public BookController(BookService bookService) {
+    private BookController(BookService bookService) {
         this.bookService = bookService;
     }
 
     @GetMapping("/book-list")
-    public String findAll(Model model) {
+    private String findAll(Model model) {
         List<Book> books = bookService.findAll();
         model.addAttribute("books", books);
         return "book-list";
     }
 
     @GetMapping("book-delete/{code_number}")
-    public String deleteBook(@PathVariable("code_number") Long codeNumber) {
+    private String deleteBook(@PathVariable("code_number") Long codeNumber) {
         bookService.deleteByCodeNumber(codeNumber);
         return "redirect:/book-list";
     }
 
     @GetMapping("/book-create")
-    public String createBookForm(Book book) {
+    private String createBookForm(Book book) {
         return "book-create";
     }
 
     @PostMapping("/book-create")
-    public String addBook(Book book) {
+    private String addBook(Book book) {
         bookService.saveBook(book);
         return "redirect:/book-list";
     }
@@ -50,7 +50,7 @@ public class BookController {
     private Long hlpCodeNumber = (long) -1;
 
     @GetMapping("/book-update/{code_number}")
-    public String updateUserForm(@PathVariable("code_number") Long codeNumber, Model model) {
+    private String updateUserForm(@PathVariable("code_number") Long codeNumber, Model model) {
         hlpCodeNumber = codeNumber;
         Book book = bookService.findByCodeNumber(codeNumber).get();
         model.addAttribute("book", book);
@@ -58,7 +58,7 @@ public class BookController {
     }
 
     @PostMapping("/book-update")
-    public String updateBook(Book book) {
+    private String updateBook(Book book) {
         if (bookService.findByCodeNumber(book.getCodeNumber()).isEmpty()) {
             bookService.deleteByCodeNumber(hlpCodeNumber);
             bookService.saveBook(book);
@@ -70,42 +70,42 @@ public class BookController {
     }
 
     @GetMapping("/book-find")
-    public String createFindBookForm(Book book) {
+    private String createFindBookForm(Book book) {
         return "book-find";
     }
 
     @PostMapping("/book-find")
-    public String findBook(Book book) {
+    private String findBook(Book book) {
         hlpCodeNumber = book.getCodeNumber();
         return "book-find";
     }
 
     @GetMapping("/book-show")
-    public String showBook(Model model) {
+    private String showBook(Model model) {
         Optional<Book> book = bookService.findByCodeNumber(hlpCodeNumber);
         model.addAttribute("book", book);
         return "book-show";
     }
 
-    public List<Book> findByUserId(Long userId) {
+    private List<Book> findByUserId(Long userId) {
         return bookService.findByUserId(userId);
     }
 
     @GetMapping("/user-takenbooks/{id}")
-    public String findTakenBooks(@PathVariable("id") Long id, Model model) {
+    private String findTakenBooks(@PathVariable("id") Long id, Model model) {
         List<Book> books = bookService.findByUserId(id);
         model.addAttribute("books", books);
         return "user-takenbooks";
     }
 
     @GetMapping("/book-givetouser/{code_number}")
-    public String createGiveBookToUserForm(@PathVariable("code_number") Long codeNumber, User user) {
+    private String createGiveBookToUserForm(@PathVariable("code_number") Long codeNumber, User user) {
         hlpCodeNumber = codeNumber;
         return "book-givetouser";
     }
 
     @PostMapping("/book-givetouser")
-    public String giveBookToUser(User user) {
+    private String giveBookToUser(User user) {
         Book book = bookService.findByCodeNumber(hlpCodeNumber).get();
         book.setUserId(user.getId());
         bookService.saveBook(book);
@@ -113,7 +113,7 @@ public class BookController {
     }
 
     @GetMapping("/book-returntolibrary/{code_number}")
-    public String returnBookToLibrary(@PathVariable("code_number") Long codeNumber) {
+    private String returnBookToLibrary(@PathVariable("code_number") Long codeNumber) {
         Book book = bookService.findByCodeNumber(codeNumber).get();
         book.setUserId((long)-1);
         bookService.saveBook(book);
